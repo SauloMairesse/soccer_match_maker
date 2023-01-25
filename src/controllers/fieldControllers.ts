@@ -8,3 +8,10 @@ export async function postField(req: Request, res: Response) {
 
     return res.status(200).send(newField)
 }
+
+export async function getFields(req: Request, res: Response) {
+    
+    const fieldList = await fieldService.getAllFields()
+
+    return res.status(200).send(fieldList)
+}
