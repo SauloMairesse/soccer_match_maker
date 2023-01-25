@@ -8,6 +8,16 @@ async function createUser(user: User) {
     return newUser
 }
 
+async function findUserByEmail(email: string) {
+    const user = await prisma.users.findFirst({
+        where: { email: email } 
+    })
+    console.log('user by Email Repository :', user)
+    
+    return user
+}
+
 export const userRepository = {
     createUser,
+    findUserByEmail
 }
