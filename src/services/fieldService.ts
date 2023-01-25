@@ -7,6 +7,13 @@ async function registerField(field: Field) {
     return newField
 }
 
+async function listFields() {
+    const fields = await fieldRepository.findAllFields()
+    
+    return fields
+}
+
 export const fieldService = {
     registerField,
+    listFields
 }
