@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model fields {
+  id         Int           @id @default(autoincrement())
+  cep        String
+  image      String
+  category   fieldcategory
+  price      BigInt?
+  complement String?
+  createdAt  DateTime      @default(now()) @db.Timestamp(6)
+  matchs     matchs[]
+}
+
+model matchs {
+  id                              Int      @id @default(autoincrement())
+  homeTeam                        Int
+  outsideTeam                     Int
+  date                            DateTime @db.Timestamp(6)
+  fieldId                         Int
+  createdAt                       DateTime @default(now()) @db.Timestamp(6)
+  fields                          fields   @relation(fields: [fieldId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  teams_matchs_homeTeamToteams    teams    @relation("matchs_homeTeamToteams", fields: [homeTeam], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  teams_matchs_outsideTeamToteams teams    @relation("matchs_outsideTeamToteams", fields: [outsideTeam], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model players {
+  id     Int   @id @default(autoincrement())
+  userId Int
+  teamId Int
+  teams  teams @relation(fields: [teamId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users  users @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model teams {
+  id                               Int       @id @default(autoincrement())
+  name                             String
+  emblem                           String
+  captainId                        Int
+  createdAt                        DateTime  @default(now()) @db.Timestamp(6)
+  matchs_matchs_homeTeamToteams    matchs[]  @relation("matchs_homeTeamToteams")
+  matchs_matchs_outsideTeamToteams matchs[]  @relation("matchs_outsideTeamToteams")
+  players                          players[]
+  users                            users     @relation(fields: [captainId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  id        Int       @id @default(autoincrement())
+  name      String
+  image     String
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now()) @db.Timestamp(6)
+  players   players[]
+  teams     teams[]
+}
+
+enum fieldcategory {
+  Public
+  Private
+}
