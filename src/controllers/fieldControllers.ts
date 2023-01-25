@@ -9,9 +9,9 @@ export async function postField(req: Request, res: Response) {
     return res.status(200).send(newField)
 }
 
-export async function getFields(req: Request, res: Response) {
+export async function getAllFields(req: Request, res: Response) {
     
-    const fieldList = await fieldService.getAllFields()
+    const newField = await fieldService.listFields()
 
-    return res.status(200).send(fieldList)
+    return res.status(200).send(newField)
 }

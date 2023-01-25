@@ -10,7 +10,7 @@ async function createField(field: Field) {
 
 async function findAllFields() {
     const fields = await prisma.fields.findMany()
-    console.log('list of fields :', fields)
+    console.log('list of fields Repository :', fields)
     
     return fields
 }
