@@ -9,5 +9,7 @@ const fieldRouters = Router()
 fieldRouters.post('/register/field',
     schemaValidation(newFieldSchema), 
     postField)
+// fieldRouters.get('/field/all', getFields)
+
 
 export default fieldRouters
