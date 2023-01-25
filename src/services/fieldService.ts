@@ -1,4 +1,4 @@
-import { fieldRepository } from "../repositorys/fieldsRepositorys"
+import { fieldRepository } from "../repositorys/fieldsRepository"
 import { Field } from "../types&schemas/fields/types"
 
 async function registerField(field: Field) {
