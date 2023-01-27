@@ -1,5 +1,5 @@
 import prisma from "../database/database";
-import { User } from "../types&schemas/user/type";
+import { User } from "../types&schemas/user/types";
 
 async function createUser(user: User) {
     const newUser = await prisma.users.create({ data: user})

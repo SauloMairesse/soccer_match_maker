@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
 
 import { userRepository } from "../repositorys/userRepository"
-import { User } from "../types&schemas/user/type"
+import { User } from "../types&schemas/user/types"
 
 async function registerUser(user: User) {
     await validateUniqueEmail(user.email)
