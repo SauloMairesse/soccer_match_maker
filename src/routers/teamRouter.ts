@@ -8,6 +8,7 @@ const teamRouter = Router()
 teamRouter.post('/register/team',
     schemaValidation(createTeamSchema),
     postNewTeam)
-teamRouter.get('/teams/all', getTeams)
+
+teamRouter.get('/teams', getTeams)
 
 export default teamRouter

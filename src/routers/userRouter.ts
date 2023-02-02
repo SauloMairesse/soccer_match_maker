@@ -6,7 +6,7 @@ import { createUserSchema } from "../types&schemas/user/schema";
 
 const userRouter = Router()
 
-userRouter.post('/register/user',
+userRouter.post('register/user',
     schemaValidation(createUserSchema), 
     signUp)
 
